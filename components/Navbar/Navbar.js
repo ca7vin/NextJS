@@ -21,6 +21,10 @@ export default function Navbar() {
         href="/quotes">
             <a className='text-xl uppercase hover:font-bold'>Quotes</a>
         </Link>
+        <Link 
+        href="/bitcoin">
+            <a className='text-xl uppercase hover:font-bold'>Cours BTC</a>
+        </Link>
     </nav>
   )
 }
