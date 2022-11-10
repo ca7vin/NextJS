@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import React from "react";
+import "../styles/globals.css";
+import Container from "../components/Container/Container";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <Container>
+      <Component {...pageProps} />
+    </Container>
+  );
 }
 
-export default MyApp
+export default MyApp;
