@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export default function handler(req, res) {
+export default function Handler(req, res) {
 
     if (req.method === 'GET') {
 

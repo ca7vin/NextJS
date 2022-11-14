@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 
-export default function add() {
+export default function Add() {
 
     const enWord = useRef();
     const frWord = useRef();
