@@ -25,6 +25,10 @@ export default function Navbar() {
         href="/bitcoin">
             <a className='text-xl uppercase hover:font-bold'>Cours BTC</a>
         </Link>
+        <Link 
+        href="/add">
+            <a className='text-xl uppercase hover:font-bold'>Add (POST Request)</a>
+        </Link>
     </nav>
   )
 }

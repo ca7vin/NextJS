@@ -2,13 +2,35 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { v4 as uuidv4 } from "uuid"
-
+import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect } from "react";
 
 export default function Home(props) {
-  console.log(props.array);
+  // console.log(props.array);
   const route = useRouter();
-  console.log(route);
+  // console.log(route);
+
+  const [state, setState] = useState(false)
+
+
+  useEffect(() => {
+    newWord()
+  }, [])
+
+
+  const newWord = () => {
+    fetch('/api/vocapi')
+    .then(response => response.json())
+    .then(data => setState(data))
+  }
+  console.log(state.englishList);
+
+
+  let randomWord;
+  if (state) {
+    const array = state.englishList[0].data;
+    randomWord = array[Math.floor(Math.random() * array.length)].en
+  }
 
   return (
     <>
@@ -19,8 +41,9 @@ export default function Home(props) {
         <title>Titre</title>
       </Head>
       <div className={styles.container}>
-        <h1 className='text-2xl uppercase font-bold my-5'>Liste de vocabulaire</h1>
-        <table className="table w-full border-separate border-spacing-2 border border-slate-500">
+        {/* <h1 className='text-2xl uppercase font-bold my-5'>Liste de vocabulaire</h1> */}
+        <h1 className="text-2xl uppercase font-bold my-5">Mot au hasard</h1>
+        {/* <table className="table w-full border-separate border-spacing-2 border border-slate-500">
           <thead>
             <tr>
               <th className="border border-slate-600 w-1/2 uppercase p-5 font-bold">Anglais</th>
@@ -35,7 +58,11 @@ export default function Home(props) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
+        <h2 className='text-2xl mb-5 border-dotted border-white border-4 px-4 py-2 capitalize'>{randomWord}</h2>
+        <button onClick={newWord} className="bg-white border-white border-4 rounded-md text-black px-3 py-2 hover:border-4 hover:border-orange-600 hover:text-orange-600">
+          Get a word
+        </button>
       </div>
     </>
   );
@@ -47,9 +74,9 @@ export async function getStaticProps() {
   if (array.length === 0) {
     return {
       redirect: {
-        destination: '/quotes'
-      }
-    }
+        destination: "/quotes",
+      },
+    };
   }
 
   return {
