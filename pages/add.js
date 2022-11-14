@@ -14,7 +14,7 @@ export default function Add() {
             fr: frWord.current.value,
         }
 
-        fetch('https://next-hq5n42ibl-ca7vin.vercel.app/api/vocapi', {
+        fetch('https://next-js-ca7vin.vercel.app/api/vocapi', {
             method: 'POST',
             body: JSON.stringify(newWord),
             headers: { 'Content-Type': 'application/json'}
